@@ -1,37 +1,62 @@
-
-
-var count = 0;
-var style = document.body.style;
-var background = document.body.style;
-
-// function updateBackground(){
-// 	console.log(count);
-// 	if ((count % 2) === 0){
-// 	console.log("image should be concert");
-// 	background.backgroundImage = "url('assets/images/music.jpg')";
-// 	background.backgroundRepeat = "no-repeat";
-// 	background.backgroundSize = "cover";
-// 	background.height = "50%";
-// 	return;
-// 	}
-// 	else{
-// 		console.log("image should be piano");
-// 	background.backgroundImage = "url('assets/images/piano.jpg')";
-// 	background.height = "100%";
-// 	}
-// }
-
+var pianoSounds = ['G-flat','G','A','B','C-sharp','C','D','E','F'];
+var drumSounds = ["clap", "hihat", "kick", "openhat", "boom", "ride", "snare", "tom", "tink"];
+var pianoFiles = ["g-flat"]
 //____________________________________________________________________
-//	Section below. Funciton to switch sounds from drums to piano
+//	Section below. Funciton to switch sounds from drums to piano 
+//		and change background/text
 //____________________________________________________________________
 
+function determineInstrument(){
+	//console.log(button.value)
+	if(!this.value) return;
+	if(this.value === "piano"){
+		console.log("piano man");
 
-var button = document.querySelector("button");
+		updateSettings();
+	}
+	else{
+		console.log("little drummer boy");
+		removeUpdates();
+	}
+};
 
 
-button.addEventListener("click",  function(){
-	console.log("you clicked a button");
-});
+function updateSettings(){
+	document.body.style.backgroundImage = "url('assets/images/piano.jpg')";
+
+	var spans = document.querySelectorAll('span');
+	for(var i=0; i<spans.length; i++){
+		spans[i].innerHTML = pianoSounds[i];  //   this will change the text to correlate with the appropriate instruments
+	}
+	var sounds = document.querySelectorAll('audio');
+	for(var i=0; i<sounds.length; i++){
+		sounds[i].src = "assets/sounds/" + pianoSounds[i] + ".wav";
+	}
+	console.log("new audio files");
+	console.log(sounds);
+
+// still need to change words on boxes to show note
+
+}
+
+function removeUpdates(){
+	document.body.style.backgroundImage = "url('assets/images/music.jpg')";
+	var spans = document.querySelectorAll('span');
+	for(var i=0; i<spans.length; i++){
+		spans[i].innerHTML = drumSounds[i];  //   this will change the text to correlate with the appropriate instruments
+	}
+
+	var sounds = document.querySelectorAll('audio');
+	for(var i=0; i<sounds.length; i++){
+		sounds[i].src = "assets/sounds/" + drumSounds[i] + ".wav";
+	}
+	console.log("new audio files");
+	console.log(sounds);
+	//console.log(sounds[0].src);
+
+
+
+}
 
 //____________________________________________________________________
 //		Section Below: logic to play sound and display letter pressed
@@ -49,21 +74,25 @@ function playSound(event){
 
 function removeAnimationKey(key) {
 	//console.log("removeAnimationKey function invoked");
-	this.classList.remove("played"); // removes tranistions 
+	this.classList.remove("played"); // removes transitions 
 }
 
 function animateKey(key){
 	key.classList.add("played") // animates the key; should have just put this in the playSound function
 }
 
-window.addEventListener("keydown", playSound);
+//____________________________________________________________________
+// 				invoke functions below
+//____________________________________________________________________
 
+
+window.addEventListener("keydown", playSound);  // listens for a key to be pushed and plays sound if there is one corresponding to that key code
+
+var buttons = document.querySelectorAll("button");
+buttons.forEach(button => button.addEventListener("click", determineInstrument)); // check's button for pion/drums to change settins
+console.log(buttons);
 var keys = document.querySelectorAll(".key");
-keys.forEach(key => key.addEventListener("transitionend", removeAnimationKey))
-
-// var animated = document.querySlector(".played", removeAnimationKey);
-
-
-
+keys.forEach(key => key.addEventListener("transitionend", removeAnimationKey));  // checks to sey whick key transitioned and then resets it
+console.log(keys);
 
 

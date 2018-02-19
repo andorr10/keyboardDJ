@@ -1,36 +1,49 @@
 html {
   font-size: 10px;
-  background: url(../images/music.jpg) bottom center;
-  background-size: cover;
-  background-repeat: no-repeat;
   width:100%;
   height: 100%;
+}
+body{
+	background: url(../images/music.jpg);
+	background-size: cover;
+	background-repeat: no-repeat;
 }
 header{
 	width:100%;
 	height:9vh;
 	align-items: center;
   	justify-content: center;
+  	color: #52c4ff;
+  	font-family: sans-serif;
+  	margin-bottom: 10em;
+  	margin-top;
 }
-
 
 button{
 	width: 5%;
 	height: 2em;
 	text-align: center;
+	border-radius: 5px;
+	margin: 0 1em;
+	background-color: #52c4ff;
+	font-style: bold;
+	margin-top: 2em;
+	display: inline-block;
 }
-/*.clearfix{
-	overflow: auto;
-}*/
+.conetent{
+	display: inline-block;
+}
+
 
 .instrumentChoice{
 	width:33%;
 	height: 10%;
 	text-align: center;
 	font-size: 3em;
-	float: left;
+	vertical-align: center;
+
 }
-1
+
 .allKeys {
   display: flex;
   flex: 1;
@@ -38,8 +51,8 @@ button{
   min-height: 80vh;
   align-items: center;
   justify-content: center;
-  padding-top: 5em;
-  margin-top: 5em;
+  padding-top: -10em;
+  margin-top: 3em;
 }
 
 .key {
@@ -59,7 +72,7 @@ button{
 
 .played {
   transform: scale(1.1);
-  border-color: #ffc600;
+  border-color: #52c4ff;
   box-shadow: 0 0 1rem #ffc600;
 }
 
