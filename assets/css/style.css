@@ -29,6 +29,7 @@ button{
 	font-style: bold;
 	margin-top: 2em;
 	display: inline-block;
+  opacity: .75;
 }
 .conetent{
 	display: inline-block;
